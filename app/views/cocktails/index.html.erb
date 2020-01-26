@@ -1,0 +1,24 @@
+<h1 class="mt-4">List of all cocktails</h1>
+
+<% @cocktails.each do |cocktail| %>
+  <div class="card bg-light mb-3 rounded" style="max-width: 18rem;">
+    <div class="card-header">
+      <!-- <%= cocktail.name %> -->
+      <%= link_to cocktail.name, cocktail_path(cocktail) %>
+    </div>
+    <div class="card-body">
+      <!-- <h5 class="card-title">Light card title</h5> -->
+      <ul class="card-text">
+        <% cocktail.ingredients.each do |ingredient| %>
+          <li>
+            <%= ingredient.name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+
+
+
