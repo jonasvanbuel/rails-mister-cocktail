@@ -1,6 +1,7 @@
 <h1><%= @cocktail.name %></h1>
 
 <h5>Ingredients:</h5>
+
 <ul>
   <% @cocktail.doses.each do |dose| %>
     <li>
@@ -9,6 +10,11 @@
   <% end %>
 </ul>
 
-<%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail), { class: "btn btn-primary" } %>
+<div class="mt-4">
+  <%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail), :class => "btn btn-primary" %>
+  <%= link_to "Remove ingredient", cocktail_dose_path(@cocktail), :method => :delete, :class => "btn btn-warning" %>
+</div>
 
-<%= link_to "Delete cocktail", cocktail_path(@cocktail), :method => :delete, :class => "btn btn-danger" %>
+<div class="mt-4">
+  <%= link_to "Delete cocktail", cocktail_path(@cocktail), :method => :delete, :class => "btn btn-danger" %>
+</div>

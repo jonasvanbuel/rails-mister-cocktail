@@ -5,11 +5,14 @@ class DosesController < ApplicationController
     @ingredients = Ingredient.all
   end
   def create
-    description = dose_params[:description]
-    ingredient = Ingredient.find(dose_params[:ingredient].to_i)
-    cocktail = Cocktail.find(params[:cocktail_id].to_i)
-    @dose = Dose.create({ description: description, ingredient: ingredient, cocktail: cocktail })
-    redirect_to cocktails_path
+    @cocktail = Cocktail.find(params[:cocktail_id])
+    @ingredient = Ingredient.find(dose_params[:ingredient])
+    @dose = Dose.create(description: dose_params[:description], cocktail: @cocktail, ingredient: @ingredient)
+    if @dose.save
+      redirect_to cocktail_path(@cocktail)
+    else
+      render :new
+    end
   end
   def destroy
     @dose = Dose.find(dose_params[:id])
@@ -20,6 +23,6 @@ class DosesController < ApplicationController
   private
 
   def dose_params
-    params.require(:dose).permit(:id, :description, :ingredient)
+    params.require(:dose).permit(:description, :ingredient)
   end
 end
