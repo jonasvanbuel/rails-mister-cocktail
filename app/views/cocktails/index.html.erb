@@ -1,24 +1,12 @@
 <h1 class="mt-4">List of all cocktails</h1>
 
 <% @cocktails.each do |cocktail| %>
-  <div class="card bg-light mb-3 rounded" style="max-width: 18rem;">
-    <div class="card-header">
-      <!-- <%= cocktail.name %> -->
-      <%= link_to cocktail.name, cocktail_path(cocktail) %>
+
+  <%= link_to cocktail_path(cocktail) do %>
+    <div class="card m-3 rounded" style="width: 200px; height: 200px; background-image: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('<%= cl_image_path cocktail.photo.key, height: 200, width: 200, crop: :fill %>')">
+      <div class="title">
+        <%= cocktail.name %>
+      </div>
     </div>
-    <div class="card-body">
-      <!-- <h5 class="card-title">Light card title</h5> -->
-      <ul class="card-text">
-        <% cocktail.ingredients.each do |ingredient| %>
-          <li>
-            <%= ingredient.name %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+  <% end %>
 <% end %>
-
-
-
-

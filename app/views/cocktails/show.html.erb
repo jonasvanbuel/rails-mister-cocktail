@@ -1,5 +1,11 @@
 <h1><%= @cocktail.name %></h1>
 
+<hr>
+
+<%= cl_image_tag @cocktail.photo.key, height: 200, width: 200, crop: :fill %>
+
+<hr>
+
 <h5>Ingredients:</h5>
 
 <ul>
